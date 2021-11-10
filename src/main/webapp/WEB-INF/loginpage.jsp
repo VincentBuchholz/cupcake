@@ -11,6 +11,7 @@
     </jsp:attribute>
 
     <jsp:body>
+        <img src="images/olskercupcakes.png" height="auto" width="100%"/>
         <div style="margin-top: 5em;" class="container">
             <form name="login" action="${pageContext.request.contextPath}/fc/logincommand"  method="POST">
                 <div class="row mb-3">

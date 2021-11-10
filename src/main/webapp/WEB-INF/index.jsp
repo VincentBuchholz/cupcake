@@ -15,11 +15,11 @@
 <div class="container">
     <div class="top">
         <div class="text-center" id="headerimg">
-            <img src="images/olskercupcakes.png" height="auto" width="100%"/>
         </div>
+            <img src="${pageContext.request.contextPath}/files/olskercupcakes.png" height="auto" width="100%"/>
 
         <div class="buttons float-end">
-            <a class="btn btn-primary" href="login.html" role="button">Login</a>
+            <a class="btn btn-primary" href="fc/loginpage" role="button">Login</a>
             <a class="btn btn-primary" href="register.html" role="button">Sign up</a>
         </div>
     </div>
