@@ -1,6 +1,18 @@
+<%@ page import="business.util.Initializer" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+    Initializer initializer = new Initializer();
+    if(request.getServletContext().getAttribute("bottomList") == null) {
+        request.getServletContext().setAttribute("bottomList", initializer.getBottomList());
+    }
+    if(request.getServletContext().getAttribute("toppingList") == null) {
+        request.getServletContext().setAttribute("toppingList", initializer.getToppingList());
+    }
+
+%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -83,11 +95,9 @@
                         <div class="form-group">
                             <label for="sel1">Select bottom:</label>
                             <select class="form-control" id="sel1">
-                                <option>Chocolate</option>
-                                <option>Vanilla</option>
-                                <option>Nutmeg</option>
-                                <option>Pistacio</option>
-                                <option>Almond</option>
+                                <c:forEach var="bottomItem" items="${applicationScope.bottomList}">
+                                    <option value="${bottomItem.id}">${bottomItem.name}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
@@ -95,15 +105,9 @@
                         <div class="form-group">
                             <label for="sel1">Select topping:</label>
                             <select class="form-control" id="sel2">
-                                <option>Chocolate</option>
-                                <option>Blueberry</option>
-                                <option>Rasberry</option>
-                                <option>Crispy</option>
-                                <option>Strawberry</option>
-                                <option>Rum/Raisin</option>
-                                <option>Orange</option>
-                                <option>Lemon</option>
-                                <option>Blue cheese</option>
+                                <c:forEach var="toppingItem" items="${applicationScope.toppingList}">
+                                    <option value="${toppingItem.id}">${toppingItem.name}</option>
+                                </c:forEach>
                             </select>
                         </div>
 
