@@ -20,7 +20,7 @@
 
         <div class="buttons float-end">
             <a class="btn btn-primary" href="fc/loginpage" role="button">Login</a>
-            <a class="btn btn-primary" href="register.html" role="button">Sign up</a>
+            <a class="btn btn-primary" href="fc/registerpage" role="button">Sign up</a>
         </div>
     </div>
     <div class="content">
