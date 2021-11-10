@@ -2,38 +2,109 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<t:genericpage>
-
-    <jsp:attribute name="header">
-         Home
-    </jsp:attribute>
-
-    <jsp:attribute name="footer">
-        <c:set var="addHomeLink" value="${false}" scope="request"/>
-    </jsp:attribute>
-
-    <jsp:body>
-
-        <div>
-            <h2>Our Cool Site</h2>
-
-            <div style="margin-top: 3em;margin-bottom: 3em;">
-                Main page for this 2. semester start project used at cphbusiness.dk
-            </div>
-
-            <c:if test="${sessionScope.role == 'employee' }">
-                <p style="font-size: larger">This is what you can do,
-                    since your are logged in as an employee</p>
-                 <p><a href="fc/employeepage">Employee Page</a>
-             </c:if>
-
-             <c:if test="${sessionScope.role == 'customer' }">
-                <p style="font-size: larger">This is what you can do, since your
-                    are logged in as a customer</p>
-                <p><a href="fc/customerpage">Customer Page</a>
-            </c:if>
-
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Cupcake</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+    <div class="top">
+        <div class="text-center" id="headerimg">
+            <img src="images/olskercupcakes.png" height="auto" width="100%"/>
         </div>
 
-    </jsp:body>
-</t:genericpage>
+        <div class="buttons float-end">
+            <a class="btn btn-primary" href="login.html" role="button">Login</a>
+            <a class="btn btn-primary" href="register.html" role="button">Sign up</a>
+        </div>
+    </div>
+    <div class="content">
+        <table class="table table-striped" id="bottoms">
+            <thead>
+            <tr>
+                <th scope="col">Bottom</th>
+                <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Chocolate</td>
+                <td>5.0</td>
+            </tr>
+            <tr>
+                <td>Vanilla</td>
+                <td>5.0</td>
+            </tr>
+            <tr>
+                <td>Nutmeg</td>
+                <td>5.0</td>
+            </tr>
+            <tr>
+                <td>Pistacio</td>
+                <td>6.0</td>
+            </tr>
+            <tr>
+                <td>Almond</td>
+                <td>7.0</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-striped" id="toppings">
+            <thead>
+            <tr>
+                <th scope="col">Topping</th>
+                <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Chocolate</td>
+                <td>5.0</td>
+            </tr>
+            <tr>
+                <td>Blueberry</td>
+                <td>5.0</td>
+            </tr>
+            <tr>
+                <td>Rasberry</td>
+                <td>5.0</td>
+            </tr>
+            <tr>
+                <td>Crispy</td>
+                <td>6.0</td>
+            </tr>
+            <tr>
+                <td>Strawberry</td>
+                <td>6.0</td>
+            </tr>
+            <tr>
+                <td>Rum/Raisin</td>
+                <td>7.0</td>
+            </tr>
+            <tr>
+                <td>Orange</td>
+                <td>8.0</td>
+            </tr>
+            <tr>
+                <td>Lemon</td>
+                <td>8.0</td>
+            </tr>
+            <tr>
+                <td>Blue cheese</td>
+                <td>9.0</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="bottom"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="bmi" options="-endorseddirs &quot;$PROJECT_DIR$/target/endorsed&quot;" />
+      <module name="bmi" options="-endorseddirs &quot;E:\Github\2semester\Flow 4 webstack\webprojects\Cupcake\cupcake\target/endorsed&quot;" />
     </option>
   </component>
 </project>
