@@ -5,10 +5,10 @@
 
 <%
     Initializer initializer = new Initializer();
-    if(request.getServletContext().getAttribute("bottomList") == null) {
+    if (request.getServletContext().getAttribute("bottomList") == null) {
         request.getServletContext().setAttribute("bottomList", initializer.getBottomList());
     }
-    if(request.getServletContext().getAttribute("toppingList") == null) {
+    if (request.getServletContext().getAttribute("toppingList") == null) {
         request.getServletContext().setAttribute("toppingList", initializer.getToppingList());
     }
 
@@ -55,7 +55,8 @@
                                 <a class="nav-link" href="${pageContext.request.contextPath}/fc/customerpage">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="${pageContext.request.contextPath}/fc/myorderpage">My orders</a>
+                                <a class="nav-link" href="${pageContext.request.contextPath}/fc/myorderpage">My
+                                    orders</a>
                             </li>
                         </ul>
                         <!-- Left links -->
@@ -87,49 +88,68 @@
     </div>
     <div class="content">
         <div class="jumbotron bg-light mt-5 p-5 shadow-lg p-3 mb-5 bg-white rounded">
-            <h1 class="display-4">Welcome  ${sessionScope.firstName}!</h1>
-            <p class="lead">The best cupcakes in town, choose here:</p>
-            <form action="">
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="form-group">
-                            <label for="sel1">Select bottom:</label>
-                            <select class="form-control" id="sel1">
-                                <c:forEach var="bottomItem" items="${applicationScope.bottomList}">
-                                    <option value="${bottomItem.id}">${bottomItem.name}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div class="form-group">
-                            <label for="sel1">Select topping:</label>
-                            <select class="form-control" id="sel2">
-                                <c:forEach var="toppingItem" items="${applicationScope.toppingList}">
-                                    <option value="${toppingItem.id}">${toppingItem.name}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
+            <h1 class="display-2">Your orders</h1>
+            <table class="table table-striped" id="bottoms">
+                <thead>
+                <tr>
+                    <th scope="col">Order id</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Total price</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1231</td>
+                    <td>10.10.2021</td>
+                    <td>30.00</td>
+                    <td><a href="${pageContext.request.contextPath}/fc/myorderinfopage">
+                        <button type="button" class="btn btn-outline-primary float-end"><i
+                                class="bi bi-info-circle"></i></button>
+                    </a></td>
+                </tr>
+                <tr>
+                    <td>3231</td>
+                    <td>10.10.2021</td>
+                    <td>20.00</td>
+                    <td><a href="${pageContext.request.contextPath}/fc/myorderinfopage">
+                        <button type="button" class="btn btn-outline-primary float-end"><i
+                                class="bi bi-info-circle"></i></button>
+                    </a></td>
+                </tr>
+                <tr>
+                    <td>5231</td>
+                    <td>10.10.2021</td>
+                    <td>10.00</td>
+                    <td><a href="${pageContext.request.contextPath}/fc/myorderinfopage">
+                        <button type="button" class="btn btn-outline-primary float-end"><i
+                                class="bi bi-info-circle"></i></button>
+                    </a></td>
+                </tr>
+                <tr>
+                    <td>12231</td>
+                    <td>10.10.2021</td>
+                    <td>50.00</td>
+                    <td><a href="${pageContext.request.contextPath}/fc/myorderinfopage">
+                        <button type="button" class="btn btn-outline-primary float-end"><i
+                                class="bi bi-info-circle"></i></button>
+                    </a></td>
+                </tr>
+                <tr>
+                    <td>13231</td>
+                    <td>10.10.2021</td>
+                    <td>60.00</td>
+                    <td><a href="${pageContext.request.contextPath}/fc/myorderinfopage">
+                        <button type="button" class="btn btn-outline-primary float-end"><i
+                                class="bi bi-info-circle"></i></button>
+                    </a></td>
+                </tr>
+                </tbody>
+            </table>
 
-                    </div>
-                    <div class="col-sm">
-                        <div class="form-group">
-                            <label for="sel1">Amount:</label>
-                            <select class="form-control" id="sel3">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                        </div>
-                        <button class="btn btn-primary btn-lg btn-block mt-3 float-end" type="submit">Add to cart</button>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
-</div>
-<div class="bottom"></div>
+    <div class="bottom"></div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -137,4 +157,3 @@
 
 </body>
 </html>
-

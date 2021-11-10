@@ -87,49 +87,49 @@
     </div>
     <div class="content">
         <div class="jumbotron bg-light mt-5 p-5 shadow-lg p-3 mb-5 bg-white rounded">
-            <h1 class="display-4">Welcome  ${sessionScope.firstName}!</h1>
-            <p class="lead">The best cupcakes in town, choose here:</p>
-            <form action="">
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="form-group">
-                            <label for="sel1">Select bottom:</label>
-                            <select class="form-control" id="sel1">
-                                <c:forEach var="bottomItem" items="${applicationScope.bottomList}">
-                                    <option value="${bottomItem.id}">${bottomItem.name}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div class="form-group">
-                            <label for="sel1">Select topping:</label>
-                            <select class="form-control" id="sel2">
-                                <c:forEach var="toppingItem" items="${applicationScope.toppingList}">
-                                    <option value="${toppingItem.id}">${toppingItem.name}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
+            <h4>Balance: $150</h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <td>Topping</td>
+                    <td>Bottom</td>
+                    <td>Price</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Chocolate</td>
+                    <td>Blueberry</td>
+                    <td>10</td>
+                    <td><a href="#" class="btn btn-outline-danger float-end" role="button" aria-pressed="true"><i
+                            class="bi bi-trash"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Chocolate</td>
+                    <td>Vanilla</td>
+                    <td>10</td>
+                    <td><a href="#" class="btn btn-outline-danger float-end" role="button" aria-pressed="true"><i
+                            class="bi bi-trash"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Crispy</td>
+                    <td>Almond</td>
+                    <td>15</td>
+                    <td><a href="#" class="btn btn-outline-danger float-end" role="button" aria-pressed="true"><i
+                            class="bi bi-trash"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
 
-                    </div>
-                    <div class="col-sm">
-                        <div class="form-group">
-                            <label for="sel1">Amount:</label>
-                            <select class="form-control" id="sel3">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                        </div>
-                        <button class="btn btn-primary btn-lg btn-block mt-3 float-end" type="submit">Add to cart</button>
-                    </div>
-                </div>
-            </form>
+            <div class="mt-3 text-end">
+                <h3>Total price:</h3>
+                <h3>$35</h3>
+                <td><a href="ordered.html" class="btn btn-primary float-end " role="button"
+                       aria-pressed="true">Order</a></td>
+            </div>
         </div>
     </div>
-</div>
-<div class="bottom"></div>
+    <div class="bottom"></div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -137,4 +137,3 @@
 
 </body>
 </html>
-
