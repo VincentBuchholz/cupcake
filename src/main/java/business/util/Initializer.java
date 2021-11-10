@@ -2,6 +2,7 @@ package business.util;
 
 import business.entities.Bottom;
 import business.entities.Topping;
+import business.entities.User;
 import business.exceptions.UserException;
 import business.persistence.Database;
 import business.services.LogicFacade;
@@ -20,6 +21,7 @@ public class Initializer {
 
     List<Bottom> bottomList = null;
     List<Topping> toppingList = null;
+    List<User> customerList = null;
 
     public void initBottomList(){
         try {
@@ -58,5 +60,25 @@ public class Initializer {
         }
         return toppingList;
     }
+
+    public void initCustomerList(){
+        try {
+            customerList = LF.getAllCustomers();
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<User> getCustomerList (){
+        if(customerList == null){
+            try {
+                customerList = LF.getAllCustomers();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return customerList;
+    }
+
 
 }

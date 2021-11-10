@@ -4,10 +4,12 @@ import business.entities.User;
 import business.persistence.Database;
 import business.persistence.UserMapper;
 import business.exceptions.UserException;
+import business.util.Initializer;
 
 public class UserFacade
 {
     UserMapper userMapper;
+    Initializer initializer = new Initializer();
 
     public UserFacade(Database database)
     {
@@ -23,6 +25,7 @@ public class UserFacade
     {
         User user = new User(email, password, "customer",firstName,lastName);
         userMapper.createUser(user);
+        initializer.initCustomerList();
         return user;
     }
 

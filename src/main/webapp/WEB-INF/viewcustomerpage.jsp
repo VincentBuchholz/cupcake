@@ -1,6 +1,15 @@
+<%@ page import="business.util.Initializer" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+    Initializer initializer = new Initializer();
+    if(request.getServletContext().getAttribute("customerList") == null) {
+        request.getServletContext().setAttribute("customerList", initializer.getCustomerList());
+    }
+
+%>
 
 <!doctype html>
 <html lang="en">
@@ -84,31 +93,13 @@
                 </tr>
                 </thead>
                 <tbody>
+                    <c:forEach var="customerItem" items="${applicationScope.customerList}">
                 <tr>
-                    <td>1</td>
-                    <td>test1@test.dk</td>
-                    <td><a href="${pageContext.request.contextPath}/fc/viewcustomerinfopage"><button type="button"  class="btn btn-outline-primary float-end"><i class="bi bi-info-circle"></i></button></a></td>
+                        <td>${customerItem.id}</td>
+                        <td>${customerItem.email}</td>
+                        <td><a href="${pageContext.request.contextPath}/fc/viewcustomerinfopage"><button type="button"  class="btn btn-outline-primary float-end"><i class="bi bi-info-circle"></i></button></a></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>test1@test.dk</td>
-                    <td><a href="${pageContext.request.contextPath}/fc/viewcustomerinfopage"><button type="button"  class="btn btn-outline-primary float-end"><i class="bi bi-info-circle"></i></button></a></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>test1@test.dk</td>
-                    <td><a href="${pageContext.request.contextPath}/fc/viewcustomerinfopage"><button type="button"  class="btn btn-outline-primary float-end"><i class="bi bi-info-circle"></i></button></a></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>test1@test.dk</td>
-                    <td><a href="${pageContext.request.contextPath}/fc/viewcustomerinfopage"><button type="button"  class="btn btn-outline-primary float-end"><i class="bi bi-info-circle"></i></button></a></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>test1@test.dk</td>
-                    <td><a href="${pageContext.request.contextPath}/fc/viewcustomerinfopage"><button type="button"  class="btn btn-outline-primary float-end"><i class="bi bi-info-circle"></i></button></a></td>
-                </tr>
+                    </c:forEach>
                 </tbody>
             </table>
 
