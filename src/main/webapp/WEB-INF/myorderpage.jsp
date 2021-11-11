@@ -94,17 +94,18 @@
                 </thead>
                 <tbody>
                 <c:forEach var="orderItem" items="${applicationScope.customerOrderList}">
+                    <form action="${pageContext.request.contextPath}/fc/myorderinfopage" method="POST">
+                        <input type="hidden" name="orderID" value="${orderItem.id}">
                     <tr>
                         <td>${orderItem.id}</td>
                         <td>${orderItem.date}</td>
                         <td class="text-end">
-                            <a href="${pageContext.request.contextPath}/fc/myorderinfopage">
-                                <button type="submit" name="editbtn" value="${orderItem.id}"
+                                <button type="submit" name="infoButton" value="${orderItem.id}"
                                         class="btn btn-outline-primary float-end"><i
                                         class="bi bi-info-circle"></i></button>
-                            </a>
                         </td>
                     </tr>
+                    </form>
                 </c:forEach>
                 </tbody>
             </table>
