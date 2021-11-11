@@ -21,7 +21,7 @@ public class CartMapper {
         List<Cart> cartList = null;
 
         try (Connection connection = database.connect()) {
-            String sql = "SELECT * FROM cart_view WHERE user_id='"+customerID+"'";
+            String sql = "SELECT * FROM cart_view WHERE user_id='" + customerID + "'";
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
@@ -38,7 +38,7 @@ public class CartMapper {
                     int amount = rs.getInt("amount");
                     String toppingName = rs.getString("topping_name");
                     String bottomName = rs.getString("bottom_name");
-                    Cart cart = new Cart(id, userID,productID,price,amount,toppingName,bottomName);
+                    Cart cart = new Cart(id, userID, productID, price, amount, toppingName, bottomName);
                     cartList.add(cart);
                 }
             } catch (SQLException ex) {
@@ -50,14 +50,30 @@ public class CartMapper {
         return cartList;
     }
 
-    public void addToCart(int userID, Product product) throws UserException
-    {
-        try (Connection connection = database.connect())
-        {
+    public Double getCustomerCartTotalPrice(int customerID) throws UserException {
+        double totalPrice=0;
+        System.out.println("THIS IS THE START");
+        try (Connection connection = database.connect()) {
+            String sql = "SELECT price FROM cart_view WHERE user_id='" + customerID + "'";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    totalPrice += rs.getDouble("price");
+                }
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException("Connection to database could not be established");
+        }
+        return totalPrice;
+    }
+
+    public void addToCart(int userID, Product product) throws UserException {
+        try (Connection connection = database.connect()) {
             String sql = "INSERT INTO cart (user_id, product_id) VALUES (?, ?)";
 
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, userID);
                 ps.setInt(2, product.getId());
 
@@ -65,37 +81,26 @@ public class CartMapper {
                 ResultSet ids = ps.getGeneratedKeys();
                 ids.next();
 
-            }
-            catch (SQLException ex)
-            {
+            } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new UserException(ex.getMessage());
         }
     }
 
-    public void removeFromCart(int id) throws UserException
-    {
+    public void removeFromCart(int id) throws UserException {
 
-        try (Connection connection = database.connect())
-        {
-            String sql = "DELETE FROM cart WHERE id = '"+id+"'";
+        try (Connection connection = database.connect()) {
+            String sql = "DELETE FROM cart WHERE id = '" + id + "'";
 
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.executeUpdate();
 
-            }
-            catch (SQLException ex)
-            {
+            } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new UserException(ex.getMessage());
         }
     }

@@ -64,4 +64,7 @@ public class LogicFacade {
     public void removeFromProducts(int id) throws UserException {
         productMapper.removeFromProducts(id);
     }
+    public Double getCustomerCartTotalPrice(int customerID) throws UserException {
+        return cartMapper.getCustomerCartTotalPrice(customerID);
+    }
 }

@@ -120,6 +120,15 @@ public class Initializer {
         }
         return cartList;
     }
+    public double getCustomerCartTotalPrice(int customerID){
+        double totalPrice=0;
+        try {
+            totalPrice= LF.getCustomerCartTotalPrice(customerID);
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
+        return totalPrice;
+    }
 
 
 

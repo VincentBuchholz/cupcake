@@ -6,6 +6,8 @@
 <%
     Initializer initializer = new Initializer();
     request.getServletContext().setAttribute("customerCartItemList", initializer.getCustomerCartItems((Integer) session.getAttribute("id")));
+    request.getServletContext().setAttribute("customerCartTotalPrice", initializer.getCustomerCartTotalPrice((Integer) session.getAttribute("id")));
+    System.out.println(initializer.getCustomerCartTotalPrice((Integer) session.getAttribute("id")));
 %>
 <!doctype html>
 <html lang="en">
@@ -110,7 +112,7 @@
 
             <div class="mt-3 text-end">
                 <h3>Total price:</h3>
-                <h3>$35</h3>
+                <h3>${applicationScope.customerCartTotalPrice}</h3>
                 <td><a href="ordered.html" class="btn btn-primary float-end " role="button"
                        aria-pressed="true">Order</a></td>
             </div>
