@@ -2,6 +2,7 @@ package business.persistence;
 
 import business.entities.Bottom;
 import business.entities.Order;
+import business.entities.Product;
 import business.exceptions.UserException;
 
 import java.sql.*;
@@ -68,5 +69,35 @@ public class OrderMapper {
             throw new UserException("Connection to database could not be established");
         }
         return customerOrderList;
+    }
+    public int createOrder(int userID) throws UserException
+    {
+        int orderID = 0;
+        try (Connection connection = database.connect())
+        {
+            String sql = "INSERT INTO orders (user_id) VALUES (?)";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+                ps.setInt(1, userID);
+
+
+                ps.executeUpdate();
+                ResultSet ids = ps.getGeneratedKeys();
+                ids.next();
+                orderID = ids.getInt(1);
+            }
+            catch (SQLException ex)
+            {
+
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException ex)
+        {
+
+            throw new UserException(ex.getMessage());
+        }
+        return orderID;
     }
 }

@@ -37,6 +37,7 @@ public abstract class Command
         commands.put("vieworderinfopage", new CommandProtectedPage("vieworderinfopage", "employee"));
         commands.put("addToCartCommand",new addToCartCommand("customerpage","customer"));
         commands.put("removeFromCartCommand", new removeFromCartCommand("cart","customer"));
+        commands.put("OrderCommand",new OrderCommand("orderedpage","customer"));
     }
 
     public static Command fromPath(

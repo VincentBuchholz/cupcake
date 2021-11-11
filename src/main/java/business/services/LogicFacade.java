@@ -13,6 +13,7 @@ public class LogicFacade {
     private OrderMapper orderMapper;
     private CartMapper cartMapper;
     private ProductMapper productMapper;
+    private OrderLineMapper orderLineMapper;
 
 
     public LogicFacade(Database database)
@@ -23,6 +24,7 @@ public class LogicFacade {
         orderMapper = new OrderMapper(database);
         cartMapper = new CartMapper(database);
         productMapper = new ProductMapper(database);
+        orderLineMapper = new OrderLineMapper(database);
     }
 
     public  List<Bottom> getAllBottoms() throws UserException {
@@ -66,5 +68,13 @@ public class LogicFacade {
     }
     public Double getCustomerCartTotalPrice(int customerID) throws UserException {
         return cartMapper.getCustomerCartTotalPrice(customerID);
+    }
+
+    public int createOrder(int userID) throws UserException {
+        return orderMapper.createOrder(userID);
+    }
+
+    public void createOrderLine(int orderID, int productID) throws UserException{
+        orderLineMapper.createOrderLine(orderID,productID);
     }
 }
