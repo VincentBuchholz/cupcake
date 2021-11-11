@@ -88,7 +88,6 @@
                 <tr>
                     <th scope="col">Order id</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Total price</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>

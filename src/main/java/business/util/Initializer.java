@@ -22,6 +22,7 @@ public class Initializer {
     List<User> customerList = null;
     List<Order> orderList = null;
     List<Cart> cartList = null;
+    List<OrderLine> orderLineList=null;
 
     public void initBottomList(){
         try {
@@ -128,6 +129,15 @@ public class Initializer {
             e.printStackTrace();
         }
         return totalPrice;
+    }
+
+    public List<OrderLine> getOrderlines (int orderID){
+        try {
+            orderLineList = LF.getOrderlines(orderID);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return orderLineList;
     }
 
 

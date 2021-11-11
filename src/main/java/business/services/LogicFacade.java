@@ -77,4 +77,7 @@ public class LogicFacade {
     public void createOrderLine(int orderID, int productID) throws UserException{
         orderLineMapper.createOrderLine(orderID,productID);
     }
+    public List<OrderLine> getOrderlines(int orderID) throws UserException {
+        return orderLineMapper.getOrderlines(orderID);
+    }
 }

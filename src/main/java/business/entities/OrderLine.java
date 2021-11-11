@@ -4,6 +4,11 @@ public class OrderLine {
     private int id;
     private int orderID;
     private int productID;
+    private double price;
+    private int amount;
+    private String toppingName;
+    private String bottomName;
+
 
     public OrderLine(int orderID, int productID) {
         this.orderID = orderID;
@@ -32,5 +37,37 @@ public class OrderLine {
 
     public void setProductID(int productID) {
         this.productID = productID;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getToppingName() {
+        return toppingName;
+    }
+
+    public void setToppingName(String toppingName) {
+        this.toppingName = toppingName;
+    }
+
+    public String getBottomName() {
+        return bottomName;
+    }
+
+    public void setBottomName(String bottomName) {
+        this.bottomName = bottomName;
     }
 }

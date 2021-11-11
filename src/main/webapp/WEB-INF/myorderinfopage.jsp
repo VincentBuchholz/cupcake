@@ -14,6 +14,10 @@
 
     session.setAttribute("orderID",request.getParameter("orderID"));
 
+    if (request.getServletContext().getAttribute("orderLineList") == null) {
+        request.getServletContext().setAttribute("orderLineList", initializer.getOrderlines(Integer.parseInt(request.getParameter("orderID"))));
+    }
+
 %>
 <!doctype html>
 <html lang="en">
@@ -96,25 +100,19 @@
                 <tr>
                     <th scope="col">Bottom</th>
                     <th scope="col">Topping</th>
+                    <th scope="col">Amount</th>
                     <th scope="col">Price</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Chocolate</td>
-                    <td>Chocolate</td>
-                    <td>10.00</td>
-                </tr>
-                <tr>
-                    <td>Vanilla</td>
-                    <td>Chocolate</td>
-                    <td>10.00</td>
-                </tr>
-                <tr>
-                    <td>Chocolate</td>
-                    <td>Chocolate</td>
-                    <td>10.00</td>
-                </tr>
+                <c:forEach var="orderLineItem" items="${applicationScope.orderLineList}">
+                        <tr>
+                            <td>${orderLineItem.bottomName}</td>
+                            <td>${orderLineItem.toppingName}</td>
+                            <td>${orderLineItem.amount}</td>
+                            <td>${orderLineItem.price}</td>
+                        </tr>
+                </c:forEach>
                 </tbody>
             </table>
 
