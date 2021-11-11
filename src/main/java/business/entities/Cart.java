@@ -19,6 +19,12 @@ public class Cart {
         this.bottomName = bottomName;
     }
 
+    public Cart(int id, int userID, int productID) {
+        this.id = id;
+        this.userID = userID;
+        this.productID = productID;
+    }
+
     public int getId() {
         return id;
     }

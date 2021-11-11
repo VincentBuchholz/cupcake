@@ -12,6 +12,7 @@ public class LogicFacade {
     private UserMapper userMapper;
     private OrderMapper orderMapper;
     private CartMapper cartMapper;
+    private ProductMapper productMapper;
 
 
     public LogicFacade(Database database)
@@ -21,6 +22,7 @@ public class LogicFacade {
         userMapper = new UserMapper(database);
         orderMapper = new OrderMapper(database);
         cartMapper = new CartMapper(database);
+        productMapper = new ProductMapper(database);
     }
 
     public  List<Bottom> getAllBottoms() throws UserException {
@@ -43,5 +45,23 @@ public class LogicFacade {
     }
     public List<Cart> getCustomerCartItems(int id) throws UserException {
         return cartMapper.getCustomerCartItems(id);
+    }
+
+    public void createProduct(Product product) throws UserException {
+
+        productMapper.createProduct(product);
+    }
+
+    public void addToCart(int userID, Product product) throws UserException {
+        cartMapper.addToCart(userID,product);
+    }
+
+    public void removeFromCart(int id) throws UserException {
+        cartMapper.removeFromCart(id);
+    }
+
+
+    public void removeFromProducts(int id) throws UserException {
+        productMapper.removeFromProducts(id);
     }
 }

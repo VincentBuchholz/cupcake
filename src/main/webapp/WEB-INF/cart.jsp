@@ -96,8 +96,13 @@
                         <td>${cartItem.toppingName}</td>
                         <td>${cartItem.bottomName}</td>
                         <td>${cartItem.price}</td>
-                        <td><a href="#" class="btn btn-outline-danger float-end" role="button" aria-pressed="true"><i
-                                class="bi bi-trash"></i></a></td>
+
+                        <form action="${pageContext.request.contextPath}/fc/removeFromCartCommand" method="POST">
+                            <input type="hidden" name="cartItemID" value="${cartItem.id}">
+                            <input type="hidden" name="userID" value="${sessionScope.user.id}">
+                        <td><button class="btn btn-outline-danger float-end" type="submit"><i
+                                class="bi bi-trash"></i></button></td>
+                        </form>
                     </tr>
                 </c:forEach>
                 </tbody>

@@ -2,6 +2,8 @@ package business.persistence;
 
 import business.entities.Cart;
 import business.entities.Order;
+import business.entities.Product;
+import business.entities.User;
 import business.exceptions.UserException;
 
 import java.sql.*;
@@ -46,5 +48,55 @@ public class CartMapper {
             throw new UserException("Connection to database could not be established");
         }
         return cartList;
+    }
+
+    public void addToCart(int userID, Product product) throws UserException
+    {
+        try (Connection connection = database.connect())
+        {
+            String sql = "INSERT INTO cart (user_id, product_id) VALUES (?, ?)";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, userID);
+                ps.setInt(2, product.getId());
+
+                ps.executeUpdate();
+                ResultSet ids = ps.getGeneratedKeys();
+                ids.next();
+
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new UserException(ex.getMessage());
+        }
+    }
+
+    public void removeFromCart(int id) throws UserException
+    {
+
+        try (Connection connection = database.connect())
+        {
+            String sql = "DELETE FROM cart WHERE id = '"+id+"'";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.executeUpdate();
+
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new UserException(ex.getMessage());
+        }
     }
 }
