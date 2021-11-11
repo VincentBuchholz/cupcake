@@ -23,7 +23,7 @@ public class UserFacade
 
     public User createUser(String email, String password,String firstName,String lastName) throws UserException
     {
-        User user = new User(email, password, "customer",firstName,lastName);
+        User user = new User(email, password, "customer",firstName,lastName,0);
         userMapper.createUser(user);
         initializer.initCustomerList();
         return user;

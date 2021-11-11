@@ -27,7 +27,7 @@ public class RegisterCommand extends CommandUnprotectedPage
         String password2 = request.getParameter("password2");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-
+        double balance = Double.parseDouble(request.getParameter("balance"));
         if (password1.equals(password2))
         {
             User user = userFacade.createUser(email, password1,firstName,lastName);
@@ -38,6 +38,7 @@ public class RegisterCommand extends CommandUnprotectedPage
             session.setAttribute("role", user.getRole());
             session.setAttribute("firstName", user.getFirstName());
             session.setAttribute("lastName", user.getLastName());
+            session.setAttribute("balance", user.getBalance());
             return user.getRole() + "page";
         }
         else

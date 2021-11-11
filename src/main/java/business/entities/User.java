@@ -3,13 +3,14 @@ package business.entities;
 public class User
 {
 
-    public User(String email, String password, String role,String firstName,String lastName)
+    public User(String email, String password, String role,String firstName,String lastName,double balance)
     {
         this.email = email;
         this.password = password;
         this.role = role;
         this.firstName=firstName;
         this.lastName = lastName;
+        this.balance = balance;
 
     }
 
@@ -19,6 +20,7 @@ public class User
     private String role;
     private String firstName;
     private String lastName;
+    private double balance;
 
     public String getEmail()
     {
@@ -74,5 +76,13 @@ public class User
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }

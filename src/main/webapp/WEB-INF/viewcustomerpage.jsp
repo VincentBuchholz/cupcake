@@ -5,9 +5,7 @@
 
 <%
     Initializer initializer = new Initializer();
-    if(request.getServletContext().getAttribute("customerList") == null) {
-        request.getServletContext().setAttribute("customerList", initializer.getCustomerList());
-    }
+    request.getServletContext().setAttribute("customerList", initializer.getCustomerList());
 
 %>
 
@@ -56,7 +54,8 @@
                                 <a class="nav-link" href="${pageContext.request.contextPath}/fc/viewcustomerpage">Customers</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="${pageContext.request.contextPath}/fc/vieworderpage">Orders</a>
+                                <a class="nav-link"
+                                   href="${pageContext.request.contextPath}/fc/vieworderpage">Orders</a>
                             </li>
                         </ul>
                         <!-- Left links -->
@@ -93,13 +92,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="customerItem" items="${applicationScope.customerList}">
-                <tr>
+                <c:forEach var="customerItem" items="${applicationScope.customerList}">
+                    <tr>
                         <td>${customerItem.id}</td>
                         <td>${customerItem.email}</td>
-                        <td><a href="${pageContext.request.contextPath}/fc/viewcustomerinfopage"><button type="button"  class="btn btn-outline-primary float-end"><i class="bi bi-info-circle"></i></button></a></td>
-                </tr>
-                    </c:forEach>
+                        <td><a href="${pageContext.request.contextPath}/fc/viewcustomerinfopage">
+                            <button type="button" class="btn btn-outline-primary float-end"><i
+                                    class="bi bi-info-circle"></i></button>
+                        </a></td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
 

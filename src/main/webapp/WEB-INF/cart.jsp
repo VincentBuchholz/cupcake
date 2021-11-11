@@ -5,13 +5,7 @@
 
 <%
     Initializer initializer = new Initializer();
-    if(request.getServletContext().getAttribute("bottomList") == null) {
-        request.getServletContext().setAttribute("bottomList", initializer.getBottomList());
-    }
-    if(request.getServletContext().getAttribute("toppingList") == null) {
-        request.getServletContext().setAttribute("toppingList", initializer.getToppingList());
-    }
-
+    request.getServletContext().setAttribute("customerCartItemList", initializer.getCustomerCartItems((Integer) session.getAttribute("id")));
 %>
 <!doctype html>
 <html lang="en">
@@ -87,7 +81,7 @@
     </div>
     <div class="content">
         <div class="jumbotron bg-light mt-5 p-5 shadow-lg p-3 mb-5 bg-white rounded">
-            <h4>Balance: $150</h4>
+            <h4>Balance: ${sessionScope.balance}</h4>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -97,27 +91,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Chocolate</td>
-                    <td>Blueberry</td>
-                    <td>10</td>
-                    <td><a href="#" class="btn btn-outline-danger float-end" role="button" aria-pressed="true"><i
-                            class="bi bi-trash"></i></a></td>
-                </tr>
-                <tr>
-                    <td>Chocolate</td>
-                    <td>Vanilla</td>
-                    <td>10</td>
-                    <td><a href="#" class="btn btn-outline-danger float-end" role="button" aria-pressed="true"><i
-                            class="bi bi-trash"></i></a></td>
-                </tr>
-                <tr>
-                    <td>Crispy</td>
-                    <td>Almond</td>
-                    <td>15</td>
-                    <td><a href="#" class="btn btn-outline-danger float-end" role="button" aria-pressed="true"><i
-                            class="bi bi-trash"></i></a></td>
-                </tr>
+                <c:forEach var="cartItem" items="${applicationScope.customerCartItemList}">
+                    <tr>
+                        <td>${cartItem.toppingName}</td>
+                        <td>${cartItem.bottomName}</td>
+                        <td>${cartItem.price}</td>
+                        <td><a href="#" class="btn btn-outline-danger float-end" role="button" aria-pressed="true"><i
+                                class="bi bi-trash"></i></a></td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
 

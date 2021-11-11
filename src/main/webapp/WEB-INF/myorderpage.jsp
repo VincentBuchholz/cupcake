@@ -5,13 +5,7 @@
 
 <%
     Initializer initializer = new Initializer();
-    if (request.getServletContext().getAttribute("bottomList") == null) {
-        request.getServletContext().setAttribute("bottomList", initializer.getBottomList());
-    }
-    if (request.getServletContext().getAttribute("toppingList") == null) {
-        request.getServletContext().setAttribute("toppingList", initializer.getToppingList());
-    }
-
+    request.getServletContext().setAttribute("customerOrderList", initializer.getCustomerOrderList((Integer) session.getAttribute("id")));
 %>
 <!doctype html>
 <html lang="en">
@@ -99,51 +93,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1231</td>
-                    <td>10.10.2021</td>
-                    <td>30.00</td>
-                    <td><a href="${pageContext.request.contextPath}/fc/myorderinfopage">
-                        <button type="button" class="btn btn-outline-primary float-end"><i
-                                class="bi bi-info-circle"></i></button>
-                    </a></td>
-                </tr>
-                <tr>
-                    <td>3231</td>
-                    <td>10.10.2021</td>
-                    <td>20.00</td>
-                    <td><a href="${pageContext.request.contextPath}/fc/myorderinfopage">
-                        <button type="button" class="btn btn-outline-primary float-end"><i
-                                class="bi bi-info-circle"></i></button>
-                    </a></td>
-                </tr>
-                <tr>
-                    <td>5231</td>
-                    <td>10.10.2021</td>
-                    <td>10.00</td>
-                    <td><a href="${pageContext.request.contextPath}/fc/myorderinfopage">
-                        <button type="button" class="btn btn-outline-primary float-end"><i
-                                class="bi bi-info-circle"></i></button>
-                    </a></td>
-                </tr>
-                <tr>
-                    <td>12231</td>
-                    <td>10.10.2021</td>
-                    <td>50.00</td>
-                    <td><a href="${pageContext.request.contextPath}/fc/myorderinfopage">
-                        <button type="button" class="btn btn-outline-primary float-end"><i
-                                class="bi bi-info-circle"></i></button>
-                    </a></td>
-                </tr>
-                <tr>
-                    <td>13231</td>
-                    <td>10.10.2021</td>
-                    <td>60.00</td>
-                    <td><a href="${pageContext.request.contextPath}/fc/myorderinfopage">
-                        <button type="button" class="btn btn-outline-primary float-end"><i
-                                class="bi bi-info-circle"></i></button>
-                    </a></td>
-                </tr>
+                <c:forEach var="orderItem" items="${applicationScope.customerOrderList}">
+                    <tr>
+                        <td>${orderItem.id}</td>
+                        <td>${orderItem.date}</td>
+                        <td class="text-end">
+                            <a href="${pageContext.request.contextPath}/fc/myorderinfopage">
+                                <button type="submit" name="editbtn" value="${orderItem.id}"
+                                        class="btn btn-outline-primary float-end"><i
+                                        class="bi bi-info-circle"></i></button>
+                            </a>
+                        </td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
 

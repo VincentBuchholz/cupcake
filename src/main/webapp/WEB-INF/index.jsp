@@ -1,6 +1,17 @@
+<%@ page import="business.util.Initializer" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    Initializer initializer = new Initializer();
+    if(request.getServletContext().getAttribute("bottomList") == null) {
+        request.getServletContext().setAttribute("bottomList", initializer.getBottomList());
+    }
+    if(request.getServletContext().getAttribute("toppingList") == null) {
+        request.getServletContext().setAttribute("toppingList", initializer.getToppingList());
+    }
+
+%>
 
 <!doctype html>
 <html lang="en">
@@ -18,12 +29,13 @@
         </div>
             <img src="${pageContext.request.contextPath}/files/olskercupcakes.png" height="auto" width="100%"/>
 
-        <div class="buttons float-end">
+        <div class="buttons mt-3 float-end">
             <a class="btn btn-primary" href="fc/loginpage" role="button">Login</a>
             <a class="btn btn-primary" href="fc/registerpage" role="button">Sign up</a>
         </div>
     </div>
     <div class="content">
+
         <table class="table table-striped" id="bottoms">
             <thead>
             <tr>
@@ -32,26 +44,12 @@
             </tr>
             </thead>
             <tbody>
+            <c:forEach var="bottomItem" items="${applicationScope.bottomList}">
             <tr>
-                <td>Chocolate</td>
-                <td>5.0</td>
+                <td>${bottomItem.name}</td>
+                <td>${bottomItem.price}</td>
             </tr>
-            <tr>
-                <td>Vanilla</td>
-                <td>5.0</td>
-            </tr>
-            <tr>
-                <td>Nutmeg</td>
-                <td>5.0</td>
-            </tr>
-            <tr>
-                <td>Pistacio</td>
-                <td>6.0</td>
-            </tr>
-            <tr>
-                <td>Almond</td>
-                <td>7.0</td>
-            </tr>
+            </c:forEach>
             </tbody>
         </table>
 
@@ -63,42 +61,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Chocolate</td>
-                <td>5.0</td>
-            </tr>
-            <tr>
-                <td>Blueberry</td>
-                <td>5.0</td>
-            </tr>
-            <tr>
-                <td>Rasberry</td>
-                <td>5.0</td>
-            </tr>
-            <tr>
-                <td>Crispy</td>
-                <td>6.0</td>
-            </tr>
-            <tr>
-                <td>Strawberry</td>
-                <td>6.0</td>
-            </tr>
-            <tr>
-                <td>Rum/Raisin</td>
-                <td>7.0</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>8.0</td>
-            </tr>
-            <tr>
-                <td>Lemon</td>
-                <td>8.0</td>
-            </tr>
-            <tr>
-                <td>Blue cheese</td>
-                <td>9.0</td>
-            </tr>
+            <c:forEach var="toppingItem" items="${applicationScope.toppingList}">
+                <tr>
+                    <td>${toppingItem.name}</td>
+                    <td>${toppingItem.price}</td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>

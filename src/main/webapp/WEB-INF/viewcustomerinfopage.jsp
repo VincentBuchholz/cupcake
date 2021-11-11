@@ -76,7 +76,7 @@
         <div class="jumbotron bg-light mt-5 p-5 shadow-lg p-3 mb-5 bg-white rounded">
             <div class="row">
                 <div class="col">
-                    <h1 class="display-6">Customer ID: 1</h1>
+                    <h1 class="display-4">Customer info</h1>
                     <form action="">
                         <div class="form-group">
                             <label for="firstname">First name</label>
@@ -98,6 +98,7 @@
                     </form>
                 </div>
                 <div class="col">
+                    <h1 class="display-4">Orders</h1>
                     <table class="table table-striped" id="bottoms">
                         <thead>
                         <tr>

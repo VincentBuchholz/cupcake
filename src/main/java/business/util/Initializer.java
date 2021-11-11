@@ -1,8 +1,6 @@
 package business.util;
 
-import business.entities.Bottom;
-import business.entities.Topping;
-import business.entities.User;
+import business.entities.*;
 import business.exceptions.UserException;
 import business.persistence.Database;
 import business.services.LogicFacade;
@@ -22,6 +20,8 @@ public class Initializer {
     List<Bottom> bottomList = null;
     List<Topping> toppingList = null;
     List<User> customerList = null;
+    List<Order> orderList = null;
+    List<Cart> cartList = null;
 
     public void initBottomList(){
         try {
@@ -70,15 +70,57 @@ public class Initializer {
     }
 
     public List<User> getCustomerList (){
-        if(customerList == null){
             try {
                 customerList = LF.getAllCustomers();
             } catch (Exception e){
                 e.printStackTrace();
             }
-        }
         return customerList;
     }
+
+    public void initOrderList(){
+        try {
+            orderList = LF.getAllOrders();
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Order> getOrderList (){
+            try {
+                orderList = LF.getAllOrders();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        return orderList;
+    }
+
+    public void initCustomerOrderList(int id){
+        try {
+            orderList = LF.getAllCustomerOrders(id);
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Order> getCustomerOrderList (int id){
+            try {
+                orderList = LF.getAllCustomerOrders(id);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        return orderList;
+    }
+
+    public List<Cart> getCustomerCartItems (int id){
+        try {
+            cartList = LF.getCustomerCartItems(id);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return cartList;
+    }
+
 
 
 }

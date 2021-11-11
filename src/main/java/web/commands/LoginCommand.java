@@ -28,12 +28,14 @@ public class LoginCommand extends CommandUnprotectedPage
         User user = userFacade.login(email, password);
 
         HttpSession session = request.getSession();
-
+        session.setAttribute("id", user.getId());
         session.setAttribute("user", user);
         session.setAttribute("role", user.getRole());
         session.setAttribute("email", email);
         session.setAttribute("firstName", user.getFirstName());
         session.setAttribute("lastName", user.getLastName());
+        session.setAttribute("balance", user.getBalance());
+
 
         String pageToShow =  user.getRole() + "page";
         return REDIRECT_INDICATOR + pageToShow;
