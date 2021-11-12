@@ -14,9 +14,8 @@
 
     session.setAttribute("orderID",request.getParameter("orderID"));
 
-    if (request.getServletContext().getAttribute("orderLineList") == null) {
-        request.getServletContext().setAttribute("orderLineList", initializer.getOrderlines(Integer.parseInt(request.getParameter("orderID"))));
-    }
+
+    request.getServletContext().setAttribute("orderLineList", initializer.getOrderlines(Integer.parseInt(request.getParameter("orderID"))));
 
 %>
 <!doctype html>
