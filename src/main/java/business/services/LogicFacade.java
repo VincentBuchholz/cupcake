@@ -88,4 +88,7 @@ public class LogicFacade {
     public void updateUserBalance(int userID, double balance) throws UserException{
         userMapper.updateUserBalance(userID,balance);
     }
+    public User getUser(int userID) throws UserException {
+        return userMapper.getUser(userID);
+    }
 }

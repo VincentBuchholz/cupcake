@@ -114,7 +114,6 @@ public class UserMapper {
 
                 while (rs.next()) {
                     balance = rs.getDouble("balance");
-                    System.out.println(balance);
                 }
 
             } catch (SQLException ex) {
@@ -150,6 +149,33 @@ public class UserMapper {
         } catch (SQLException ex) {
             throw new UserException("Connection to database could not be established");
         }
+    }
+
+    public User getUser(int userID) throws UserException {
+        User user=null;
+
+        try (Connection connection = database.connect()) {
+            String sql = "SELECT email,first_name,last_name,balance FROM users WHERE id = + '" + userID + "'";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    String email=rs.getString("email");
+                    String firstName=rs.getString("first_name");
+                    String lastName=rs.getString("last_name");
+                    double balance = rs.getDouble("balance");
+                    user=new User(email,firstName,lastName,balance);
+                    user.setId(userID);
+                }
+
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException("Connection to database could not be established");
+        }
+        return user;
     }
 
 

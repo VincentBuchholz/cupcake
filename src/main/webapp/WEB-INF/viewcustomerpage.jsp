@@ -93,13 +93,17 @@
                 </thead>
                 <tbody>
                 <c:forEach var="customerItem" items="${applicationScope.customerList}">
-                    <tr>
-                        <td>${customerItem.id}</td>
-                        <td>${customerItem.email}</td>
-                        <td><a href="${pageContext.request.contextPath}/fc/viewcustomerinfopage">
-                            <button type="button" class="btn btn-outline-primary float-end"><i
-                                    class="bi bi-info-circle"></i></button>
-                        </a></td>
+                    <form action="${pageContext.request.contextPath}/fc/ViewCustomerInfoCommand" method="POST">
+                        <input type="hidden" name="customerID" value="${customerItem.id}">
+                        <tr>
+                            <td>${customerItem.id}</td>
+                            <td>${customerItem.email}</td>
+                            <td class="text-end">
+                                <button type="submit" name="infoButton"
+                                        class="btn btn-outline-primary float-end"><i
+                                        class="bi bi-info-circle"></i></button>
+                            </td>
+                    </form>
                     </tr>
                 </c:forEach>
                 </tbody>

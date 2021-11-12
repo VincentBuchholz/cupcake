@@ -77,22 +77,23 @@
             <div class="row">
                 <div class="col">
                     <h1 class="display-4">Customer info</h1>
-                    <form action="">
+                    <form action="${pageContext.request.contextPath}/fc/UpdateBalanceCommand" method="POST">
+                        <input type="hidden" name="customerID" value="${requestScope.customerID}">
                         <div class="form-group">
                             <label for="firstname">First name</label>
-                            <input type="text" class="form-control" id="firstname" value="test1F"disabled>
+                            <input type="text" class="form-control" id="firstname" value="${requestScope.customerFirstName}"disabled>
                         </div>
                         <div class="form-group">
                             <label for="firstname">Last name</label>
-                            <input type="text" class="form-control" id="lastname" value="test1L"disabled>
+                            <input type="text" class="form-control" id="lastname" value="${requestScope.customerLastName}"disabled>
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" value="test1@test.dk" disabled>
+                            <input type="email" class="form-control" id="email" value="${requestScope.customerEmail}" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="balance">Balance</label>
-                            <input type="number" class="form-control" id="balance" value="1000.00">
+                            <label for="userBalance">Balance</label>
+                            <input type="number" class="form-control" id="userBalance" name="userBalance" value="${requestScope.customerBalance}">
                         </div>
                         <button type="submit" class="btn btn-primary mt-2">Save</button>
                     </form>

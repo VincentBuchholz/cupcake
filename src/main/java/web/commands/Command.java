@@ -33,11 +33,12 @@ public abstract class Command
         commands.put("myorderinfopage", new CommandProtectedPage("myorderinfopage", "customer"));
         commands.put("viewcustomerpage", new CommandProtectedPage("viewcustomerpage", "employee"));
         commands.put("vieworderpage", new CommandProtectedPage("vieworderpage", "employee"));
-        commands.put("viewcustomerinfopage", new CommandProtectedPage("viewcustomerinfopage", "employee"));
         commands.put("vieworderinfopage", new CommandProtectedPage("vieworderinfopage", "employee"));
         commands.put("addToCartCommand",new addToCartCommand("customerpage","customer"));
         commands.put("removeFromCartCommand", new removeFromCartCommand("cart","customer"));
         commands.put("OrderCommand",new OrderCommand("orderedpage","customer"));
+        commands.put("ViewCustomerInfoCommand",new ViewCustomerInfoCommand("viewcustomerinfopage","employee"));
+        commands.put("UpdateBalanceCommand",new UpdateBalanceCommand("viewcustomerinfopage","employee"));
     }
 
     public static Command fromPath(

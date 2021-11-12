@@ -22,6 +22,14 @@ public class User
     private String lastName;
     private double balance;
 
+    public User(String email, String firstName, String lastName, double balance) {
+        this.email=email;
+        this.firstName=firstName;
+        this.lastName = lastName;
+        this.balance = balance;
+    }
+
+
     public String getEmail()
     {
         return email;
