@@ -27,11 +27,10 @@ public class addToCartCommand extends CommandProtectedPage{
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         int bottomID = Integer.parseInt(request.getParameter("selectBottom"));
         int toppingID = Integer.parseInt(request.getParameter("selectTopping"));
-        System.out.println("topping id: " + toppingID);
         int amount = Integer.parseInt(request.getParameter("amount"));
-        System.out.println("amount: " + amount);
         int userID = Integer.parseInt(request.getParameter("user"));
-        System.out.println("userID: " + userID);
+        String bottomName = null;
+        String toppingName = null;
 
         if(bottomList == null){
             try {
@@ -47,12 +46,14 @@ public class addToCartCommand extends CommandProtectedPage{
 
             if(bottom.getId() == bottomID){
                 price = bottom.getPrice()*amount;
+                bottomName=bottom.getName();
             }
         }
 
         for (Topping topping : toppingList) {
             if (topping.getId() == toppingID){
                 price += topping.getPrice()*amount;
+                toppingName=topping.getName();
             }
         }
 
@@ -69,7 +70,7 @@ public class addToCartCommand extends CommandProtectedPage{
         } catch (UserException e) {
             e.printStackTrace();
         }
-        request.setAttribute("success","Product added to cart");
+        request.setAttribute("success","Bottom: "+bottomName+ " <br> "+ "topping: " + toppingName+" <br> " +"amount: " +amount);
         return "customerpage";
     }
 }

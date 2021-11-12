@@ -2,6 +2,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <%
     Initializer initializer = new Initializer();
@@ -14,6 +16,8 @@
 
 
 %>
+
+
 <style>
     <%@include file="/WEB-INF/css/style.css"%>
 </style>
@@ -128,11 +132,35 @@
                         </div>
                         <button class="btn btn-primary btn-lg btn-block mt-3 float-end" type="submit">Add to cart</button>
                     </div>
-                    <c:if test="${requestScope.success != null }">
-                        <div class="mt-3 text-center rounded p-1" id="productAddedMSG">
-                                ${requestScope.success}
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Product added to cart</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>You added the following to the cart</h5>
+                                    <c:if test="${requestScope.success != null }">
+                                        <script type="text/javascript">
+                                            $(window).on('load', function() {
+                                                $('#myModal').modal('show');
+                                            });
+                                        </script>
+                                        <p>${requestScope.success}</p>
+                                    </c:if>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keep shopping</button>
+                                    <button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/fc/cart'">Go to cart</button>
+                                </div>
+                            </div>
                         </div>
-                    </c:if>
+                    </div>
+
                 </div>
             </form>
         </div>
