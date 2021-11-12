@@ -79,4 +79,19 @@ public class OrderLineMapper {
         return orderLineList;
     }
 
+    public void deleteOrderLine(int orderID) throws UserException {
+        try (Connection connection = database.connect()) {
+            String sql = "DELETE FROM order_lines WHERE order_id = '" + orderID + "'";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.executeUpdate();
+
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException(ex.getMessage());
+        }
+    }
+
 }

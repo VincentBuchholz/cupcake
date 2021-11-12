@@ -117,17 +117,23 @@
                         <tbody>
 
                         <c:forEach var="orderItem" items="${applicationScope.customerOrderList}">
-                            <form action="${pageContext.request.contextPath}/fc/vieworderinfopage" method="POST">
-                                <input type="hidden" value="${orderItem.id}" name="customerOrderID">
                         <tr>
                             <td>${orderItem.id}</td>
                             <td>${orderItem.date}</td>
-                            <td class="text-end">
+                            <td class="">
+                            <form action="${pageContext.request.contextPath}/fc/vieworderinfopage" method="POST" class="">
+                                <input type="hidden" value="${orderItem.id}" name="customerOrderID">
                                 <button type="submit" name="editbtn" value="" class="btn btn-outline-primary"><i
                                         class="bi bi-info-circle"></i></button>
                             </form>
+
+                        <form action="${pageContext.request.contextPath}/fc/DeleteOrderCommand" method="POST">
+                            <input type="hidden" value="${orderItem.id}" name="customerOrderID">
+                            <input type="hidden" value="viewcustomerinfopage" name="destination">
+                            <input type="hidden" value="${requestScope.customerID}" name="customerID">
                                 <button type="submit" name="removebtn" value="" class="btn btn-outline-danger"><i
                                         class="bi bi-trash"></i></button>
+                        </form>
                             </td>
                         </tr>
                         </c:forEach>

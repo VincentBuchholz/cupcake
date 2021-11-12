@@ -91,4 +91,11 @@ public class LogicFacade {
     public User getUser(int userID) throws UserException {
         return userMapper.getUser(userID);
     }
+    public void deleteOrderLine(int orderID) throws UserException {
+        orderLineMapper.deleteOrderLine(orderID);
+    }
+
+    public void deleteOrder(int id) throws UserException{
+        orderMapper.deleteOrder(id);
+    }
 }

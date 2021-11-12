@@ -100,4 +100,20 @@ public class OrderMapper {
         }
         return orderID;
     }
+
+    public void deleteOrder(int id) throws UserException {
+
+        try (Connection connection = database.connect()) {
+            String sql = "DELETE FROM orders WHERE id = '" + id + "'";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.executeUpdate();
+
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException(ex.getMessage());
+        }
+    }
 }
