@@ -12,7 +12,11 @@
         request.getServletContext().setAttribute("toppingList", initializer.getToppingList());
     }
 
+
 %>
+<style>
+    <%@include file="/WEB-INF/css/style.css"%>
+</style>
 <!doctype html>
 <html lang="en">
 <head>
@@ -125,7 +129,7 @@
                         <button class="btn btn-primary btn-lg btn-block mt-3 float-end" type="submit">Add to cart</button>
                     </div>
                     <c:if test="${requestScope.success != null }">
-                        <div class="alert alert-success" role="alert">
+                        <div class="mt-3 text-center rounded p-1" id="productAddedMSG">
                                 ${requestScope.success}
                         </div>
                     </c:if>
