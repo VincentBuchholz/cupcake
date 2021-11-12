@@ -95,16 +95,17 @@
                         </thead>
                         <tbody>
                         <c:forEach var="orderItem" items="${applicationScope.orderList}">
+                        <form action="${pageContext.request.contextPath}/fc/vieworderinfopage" method="POST">
+                            <input type="hidden" value="${orderItem.id}" name="customerOrderID">
                             <tr>
                                 <td>${orderItem.id}</td>
                                 <td>${orderItem.userID}</td>
                                 <td>${orderItem.date}</td>
                                 <td class="text-end">
-                                    <a href="${pageContext.request.contextPath}/fc/vieworderinfopage">
                                         <button type="submit" name="editbtn" value="${orderItem.id}"
                                                 class="btn btn-outline-primary"><i
                                                 class="bi bi-info-circle"></i></button>
-                                    </a>
+                                    </form>
                                     <button type="submit" name="removebtn" value="${orderItem.id}"
                                             class="btn btn-outline-danger"><i
                                             class="bi bi-trash"></i></button>
