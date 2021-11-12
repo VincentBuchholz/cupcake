@@ -1,6 +1,16 @@
+<%@ page import="business.util.Initializer" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+    Initializer initializer = new Initializer();
+
+    request.setAttribute("orderID",request.getParameter("customerOrderID"));
+    request.getServletContext().setAttribute("orderLineList", initializer.getOrderlines(Integer.parseInt(request.getParameter("customerOrderID"))));
+
+
+%>
 
 <!doctype html>
 <html lang="en">
@@ -74,31 +84,25 @@
     </div>
     <div class="content">
         <div class="jumbotron bg-light mt-5 p-5 shadow-lg p-3 mb-5 bg-white rounded">
-            <h1 class="display-2">Order ID: 1</h1>
+            <h1 class="display-2">${requestScope.orderID}</h1>
             <table class="table table-striped" id="bottoms">
                 <thead>
                 <tr>
                     <th scope="col">Bottom</th>
                     <th scope="col">Topping</th>
+                    <th scope="col">Amount</th>
                     <th scope="col">Price</th>
                 </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="orderLineItem" items="${applicationScope.orderLineList}">
                 <tr>
-                    <td>Chocolate</td>
-                    <td>Chocolate</td>
-                    <td>10.00</td>
+                    <td>${orderLineItem.bottomName}</td>
+                    <td>${orderLineItem.toppingName}</td>
+                    <td>${orderLineItem.amount}</td>
+                    <td>${orderLineItem.price}</td>
                 </tr>
-                <tr>
-                    <td>Vanilla</td>
-                    <td>Chocolate</td>
-                    <td>10.00</td>
-                </tr>
-                <tr>
-                    <td>Chocolate</td>
-                    <td>Chocolate</td>
-                    <td>10.00</td>
-                </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>

@@ -1,6 +1,12 @@
+<%@ page import="business.util.Initializer" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+    Initializer initializer = new Initializer();
+    request.getServletContext().setAttribute("customerOrderList", initializer.getCustomerOrderList(Integer.parseInt(request.getParameter("customerID"))));
+%>
 
 <!doctype html>
 <html lang="en">
@@ -109,56 +115,22 @@
                         </tr>
                         </thead>
                         <tbody>
+
+                        <c:forEach var="orderItem" items="${applicationScope.customerOrderList}">
+                            <form action="${pageContext.request.contextPath}/fc/vieworderinfopage" method="POST">
+                                <input type="hidden" value="${orderItem.id}" name="customerOrderID">
                         <tr>
-                            <td>1</td>
-                            <td>10.10.2021</td>
+                            <td>${orderItem.id}</td>
+                            <td>${orderItem.date}</td>
                             <td class="text-end">
-                                <a href="${pageContext.request.contextPath}/fc/vieworderinfopage"><button type="submit" name="editbtn" value="" class="btn btn-outline-primary"><i
-                                        class="bi bi-info-circle"></i></button></a>
+                                <button type="submit" name="editbtn" value="" class="btn btn-outline-primary"><i
+                                        class="bi bi-info-circle"></i></button>
+                            </form>
                                 <button type="submit" name="removebtn" value="" class="btn btn-outline-danger"><i
                                         class="bi bi-trash"></i></button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>10.10.2021</td>
-                            <td class="text-end">
-                                <a href="employeecustomerorderinfo.html"><button type="submit" name="editbtn" value="" class="btn btn-outline-primary"><i
-                                        class="bi bi-info-circle"></i></button></a>
-                                <button type="submit" name="removebtn" value="" class="btn btn-outline-danger"><i
-                                        class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>10.10.2021</td>
-                            <td class="text-end">
-                                <a href="employeecustomerorderinfo.html"><button type="submit" name="editbtn" value="" class="btn btn-outline-primary"><i
-                                        class="bi bi-info-circle"></i></button></a>
-                                <button type="submit" name="removebtn" value="" class="btn btn-outline-danger"><i
-                                        class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>10.10.2021</td>
-                            <td class="text-end">
-                                <a href="employeecustomerorderinfo.html"><button type="submit" name="editbtn" value="" class="btn btn-outline-primary"><i
-                                        class="bi bi-info-circle"></i></button></a>
-                                <button type="submit" name="removebtn" value="" class="btn btn-outline-danger"><i
-                                        class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>10.10.2021</td>
-                            <td class="text-end">
-                                <a href="employeecustomerorderinfo.html"><button type="submit" name="editbtn" value="" class="btn btn-outline-primary"><i
-                                        class="bi bi-info-circle"></i></button></a>
-                                <button type="submit" name="removebtn" value="" class="btn btn-outline-danger"><i
-                                        class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
