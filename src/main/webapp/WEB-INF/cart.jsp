@@ -8,6 +8,8 @@
     request.getServletContext().setAttribute("customerCartItemList", initializer.getCustomerCartItems((Integer) session.getAttribute("id")));
     request.getServletContext().setAttribute("customerCartTotalPrice", initializer.getCustomerCartTotalPrice((Integer) session.getAttribute("id")));
     System.out.println(initializer.getCustomerCartTotalPrice((Integer) session.getAttribute("id")));
+    System.out.println(session.getAttribute("id"));
+    request.getServletContext().setAttribute("balance",initializer.getUserBalance((Integer) session.getAttribute("id")));
 %>
 <!doctype html>
 <html lang="en">
@@ -83,7 +85,12 @@
     </div>
     <div class="content">
         <div class="jumbotron bg-light mt-5 p-5 shadow-lg p-3 mb-5 bg-white rounded">
-            <h4>Balance: ${sessionScope.balance}</h4>
+            <h4>Balance: ${applicationScope.balance}</h4>
+            <c:if test="${requestScope.error != null }">
+                <h1 style="color:red">
+                        ${requestScope.error}
+                </h1>
+            </c:if>
             <table class="table table-striped">
                 <thead>
                 <tr>

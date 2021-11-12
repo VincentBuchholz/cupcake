@@ -8,23 +8,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserMapper
-{
+public class UserMapper {
     private Database database;
 
-    public UserMapper(Database database)
-    {
+    public UserMapper(Database database) {
         this.database = database;
     }
 
-    public void createUser(User user) throws UserException
-    {
-        try (Connection connection = database.connect())
-        {
+    public void createUser(User user) throws UserException {
+        try (Connection connection = database.connect()) {
             String sql = "INSERT INTO users (email, password, role,first_name,last_name) VALUES (?, ?, ?,?,?)";
 
-            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
-            {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, user.getEmail());
                 ps.setString(2, user.getPassword());
                 ps.setString(3, user.getRole());
@@ -35,52 +30,39 @@ public class UserMapper
                 ids.next();
                 int id = ids.getInt(1);
                 user.setId(id);
-            }
-            catch (SQLException ex)
-            {
+            } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new UserException(ex.getMessage());
         }
     }
 
-    public User login(String email, String password) throws UserException
-    {
-        try (Connection connection = database.connect())
-        {
+    public User login(String email, String password) throws UserException {
+        try (Connection connection = database.connect()) {
             String sql = "SELECT id, role,first_name,last_name,balance FROM users WHERE email=? AND password=?";
 
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, email);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next())
-                {
+                if (rs.next()) {
                     String role = rs.getString("role");
                     String firstName = rs.getString("first_name");
                     String lastName = rs.getString("last_name");
                     int id = rs.getInt("id");
                     double balance = rs.getDouble("balance");
 
-                    User user = new User(email, password, role,firstName,lastName,balance);
+                    User user = new User(email, password, role, firstName, lastName, balance);
                     user.setId(id);
                     return user;
-                } else
-                {
+                } else {
                     throw new UserException("Could not validate user");
                 }
-            }
-            catch (SQLException ex)
-            {
+            } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new UserException("Connection to database could not be established");
         }
     }
@@ -107,7 +89,7 @@ public class UserMapper
                     String lastName = rs.getString("last_name");
                     double balance = rs.getDouble("balance");
 
-                    User user = new User(email, password,role,firstName,lastName,balance);
+                    User user = new User(email, password, role, firstName, lastName, balance);
                     user.setId(id);
                     customerList.add(user);
                 }
@@ -119,5 +101,56 @@ public class UserMapper
         }
         return customerList;
     }
+
+    public double getUserBalance(int userID) throws UserException {
+
+        double balance = 0;
+
+        try (Connection connection = database.connect()) {
+            String sql = "SELECT balance FROM users WHERE id = + '" + userID + "'";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    balance = rs.getDouble("balance");
+                    System.out.println(balance);
+                }
+
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException("Connection to database could not be established");
+        }
+        return balance;
+    }
+
+
+    public void updateUserBalance(int userID, double balance) throws UserException {
+
+        try (Connection connection = database.connect()) {
+
+            String sql = "UPDATE users SET balance =? WHERE id =?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+
+                ps.setDouble(1,balance);
+                ps.setInt(2,userID);
+
+                int result = ps.executeUpdate();
+
+
+
+
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException("Connection to database could not be established");
+        }
+    }
+
 
 }

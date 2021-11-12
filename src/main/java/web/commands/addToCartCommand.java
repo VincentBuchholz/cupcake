@@ -69,6 +69,7 @@ public class addToCartCommand extends CommandProtectedPage{
         } catch (UserException e) {
             e.printStackTrace();
         }
+        request.setAttribute("success","Product added to cart");
         return "customerpage";
     }
 }

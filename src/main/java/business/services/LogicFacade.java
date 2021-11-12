@@ -80,4 +80,12 @@ public class LogicFacade {
     public List<OrderLine> getOrderlines(int orderID) throws UserException {
         return orderLineMapper.getOrderlines(orderID);
     }
+
+    public double getUserBalance(int userID) throws UserException {
+         return userMapper.getUserBalance(userID);
+    }
+
+    public void updateUserBalance(int userID, double balance) throws UserException{
+        userMapper.updateUserBalance(userID,balance);
+    }
 }

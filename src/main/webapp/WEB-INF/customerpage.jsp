@@ -111,7 +111,6 @@
                                 </c:forEach>
                             </select>
                         </div>
-
                     </div>
                     <div class="col-sm">
                         <div class="form-group">
@@ -125,6 +124,11 @@
                         </div>
                         <button class="btn btn-primary btn-lg btn-block mt-3 float-end" type="submit">Add to cart</button>
                     </div>
+                    <c:if test="${requestScope.success != null }">
+                        <div class="alert alert-success" role="alert">
+                                ${requestScope.success}
+                        </div>
+                    </c:if>
                 </div>
             </form>
         </div>

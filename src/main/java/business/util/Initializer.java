@@ -140,6 +140,16 @@ public class Initializer {
         return orderLineList;
     }
 
+    public double getUserBalance(int userID)  {
+        double balance = 0;
 
+        try {
+            balance = LF.getUserBalance(userID);
+        } catch (UserException e) {
+            System.out.println("does it get caught?");
+            e.printStackTrace();
+        }
+        return balance;
+    }
 
 }
