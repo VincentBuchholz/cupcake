@@ -116,4 +116,23 @@ public class OrderMapper {
             throw new UserException(ex.getMessage());
         }
     }
+
+    public Double getOrderTotalPrice(int orderID) throws UserException {
+        double totalPrice=0;
+        System.out.println("THIS IS THE START");
+        try (Connection connection = database.connect()) {
+            String sql = "SELECT price FROM order_line_overview WHERE order_id='" + orderID + "'";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    totalPrice += rs.getDouble("price");
+                }
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException("Connection to database could not be established");
+        }
+        return totalPrice;
+    }
 }

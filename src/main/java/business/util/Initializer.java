@@ -152,4 +152,14 @@ public class Initializer {
         return balance;
     }
 
+    public double getOrderTotalPrice(int orderID){
+        double totalPrice=0;
+        try {
+            totalPrice= LF.getOrderTotalPrice(orderID);
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
+        return totalPrice;
+    }
+
 }

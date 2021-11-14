@@ -98,4 +98,8 @@ public class LogicFacade {
     public void deleteOrder(int id) throws UserException{
         orderMapper.deleteOrder(id);
     }
+
+    public Double getOrderTotalPrice(int orderID) throws UserException {
+        return orderMapper.getOrderTotalPrice(orderID);
+    }
 }
