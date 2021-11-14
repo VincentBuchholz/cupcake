@@ -98,6 +98,7 @@
                     <tr>
                         <td>${orderItem.id}</td>
                         <td>${orderItem.date}</td>
+
                         <td class="text-end">
                                 <button type="submit" name="infoButton" value="${orderItem.id}"
                                         class="btn btn-outline-primary float-end"><i

@@ -8,7 +8,7 @@
 
     request.setAttribute("orderID",request.getParameter("customerOrderID"));
     request.getServletContext().setAttribute("orderLineList", initializer.getOrderlines(Integer.parseInt(request.getParameter("customerOrderID"))));
-
+    request.getServletContext().setAttribute("orderTotalPrice", initializer.getOrderTotalPrice(Integer.parseInt(request.getParameter("customerOrderID"))));
 
 %>
 
@@ -105,6 +105,9 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <div class="mt-3 text-end">
+                <h3>Total price:</h3>
+                <h3>${applicationScope.orderTotalPrice}</h3>
         </div>
     </div>
 </div>
