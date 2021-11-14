@@ -96,6 +96,7 @@
                 <tr>
                     <td>Topping</td>
                     <td>Bottom</td>
+                    <td>Amount</td>
                     <td>Price</td>
                 </tr>
                 </thead>
@@ -104,6 +105,7 @@
                     <tr>
                         <td>${cartItem.toppingName}</td>
                         <td>${cartItem.bottomName}</td>
+                        <td>${cartItem.amount}</td>
                         <td>${cartItem.price}</td>
 
                         <form action="${pageContext.request.contextPath}/fc/removeFromCartCommand" method="POST">
