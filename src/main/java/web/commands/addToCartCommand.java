@@ -71,7 +71,7 @@ public class addToCartCommand extends CommandProtectedPage{
             e.printStackTrace();
         }
         request.setAttribute("success","Bottom: "+bottomName+ " <br> "+ "topping: " + toppingName+" <br> " +"amount: " +amount);
-        String imageUrl="";
+        String imageUrl="/files/cupcakeChocolate.jpg";
 
         switch (bottomID){
             case 1:
