@@ -1,28 +1,42 @@
-#productAddedMSG {
-    -moz-animation: cssAnimation 0s ease-in 1.5s forwards;
-    /* Firefox */
-    -webkit-animation: cssAnimation 0s ease-in 1.5s forwards;
-    /* Safari and Chrome */
-    -o-animation: cssAnimation 0s ease-in 1.5s forwards;
-    /* Opera */
-    animation: cssAnimation 0s ease-in 1.5s forwards;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    color: #155724;
+.modal{
+    height: 100%;
+    position: absolute !important;
+    margin: 0;
+    top: 0;
+    right: 0;
+    max-width: 500px !important;
+    left: auto !important;
+}
 
+.modal.show .modal-dialog{
+    height: 100%;
+    position: absolute;
+    margin: 0;
+    top: 0;
+    right: 0;
 }
-@keyframes cssAnimation {
-    to {
-        width:0;
-        height:0;
-        overflow:hidden;
-    }
+.modal-content {
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 0.3rem;
+    outline: 0;
 }
-@-webkit-keyframes cssAnimation {
-    to {
-        width:0;
-        height:0;
-        visibility:hidden;
-        background: transparent !important;
-    }
+.modal-header {
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    padding: 12px;
+    background-color: #67c9ba;
+    font-size: 16px;
+    color: #fff;
+}
+.shopcart-item-img {
+    width: 100%;
 }

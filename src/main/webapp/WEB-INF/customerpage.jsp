@@ -7,10 +7,10 @@
 
 <%
     Initializer initializer = new Initializer();
-    if(request.getServletContext().getAttribute("bottomList") == null) {
+    if (request.getServletContext().getAttribute("bottomList") == null) {
         request.getServletContext().setAttribute("bottomList", initializer.getBottomList());
     }
-    if(request.getServletContext().getAttribute("toppingList") == null) {
+    if (request.getServletContext().getAttribute("toppingList") == null) {
         request.getServletContext().setAttribute("toppingList", initializer.getToppingList());
     }
 
@@ -63,7 +63,8 @@
                                 <a class="nav-link" href="${pageContext.request.contextPath}/fc/customerpage">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="${pageContext.request.contextPath}/fc/myorderpage">My orders</a>
+                                <a class="nav-link" href="${pageContext.request.contextPath}/fc/myorderpage">My
+                                    orders</a>
                             </li>
                         </ul>
                         <!-- Left links -->
@@ -95,7 +96,7 @@
     </div>
     <div class="content">
         <div class="jumbotron bg-light mt-5 p-5 shadow-lg p-3 mb-5 bg-white rounded">
-            <h1 class="display-4">Welcome  ${sessionScope.firstName}!</h1>
+            <h1 class="display-4">Welcome ${sessionScope.firstName}!</h1>
             <p class="lead">The best cupcakes in town, choose here:</p>
             <form action="${pageContext.request.contextPath}/fc/addToCartCommand" method="POST">
                 <input type="hidden" name="user" value="${sessionScope.user.id}">
@@ -105,7 +106,7 @@
                             <label for="sel1">Select bottom:</label>
                             <select class="form-control" name="selectBottom" id="sel1">
                                 <c:forEach var="bottomItem" items="${applicationScope.bottomList}">
-                                    <option value="${bottomItem.id}" >${bottomItem.name}</option>
+                                    <option value="${bottomItem.id}">${bottomItem.name}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -122,40 +123,56 @@
                     </div>
                     <div class="col-sm">
                         <div class="form-group">
-                            <label for="sel1">Amount:</label>
+                            <label for="sel3">Amount:</label>
                             <select class="form-control" name="amount" id="sel3">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
-                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
                             </select>
                         </div>
-                        <button class="btn btn-primary btn-lg btn-block mt-3 float-end" type="submit">Add to cart</button>
+                        <button class="btn btn-primary btn-lg btn-block mt-3 float-end" type="submit">Add to cart
+                        </button>
                     </div>
+
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Product added to cart</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <div class="modal-header justify-content-center">
+                                    <p class="modal-title"><i class="bi bi-check-circle"></i> Product added to cart</p>
                                 </div>
-                                <div class="modal-body">
-                                    <h5>You added the following to the cart</h5>
+                                <div class="modal-body " style="flex:none !important;">
                                     <c:if test="${requestScope.success != null }">
-                                        <script type="text/javascript">
-                                            $(window).on('load', function() {
-                                                $('#myModal').modal('show');
-                                            });
-                                        </script>
-                                        <p>${requestScope.success}</p>
+                                    <script type="text/javascript">
+                                        $(window).on('load', function () {
+                                            $('#myModal').modal('show');
+                                        });
+                                    </script>
+                                    <div clas="row" style="display: flex">
+                                        <div class="col-4 p-1">
+                                            <img class="shopcart-item-img"
+                                                 src="${pageContext.request.contextPath}${requestScope.cupcakeIMG}"/>
+                                        </div>
+                                        <div class="col-8 p-1">
+                                            <p class="fw-bold m-0">Cupcake</p>
+                                            <p>${requestScope.success}</p>
+                                        </div>
+                                    </div>
                                     </c:if>
-
-
                                 </div>
+
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keep shopping</button>
-                                    <button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/fc/cart'">Go to cart</button>
+                                    <button type="button" class="btn btn-primary w-100"
+                                            onclick="location.href='${pageContext.request.contextPath}/fc/cart'">GO TO CART
+                                    </button>
+                                    <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">KEEP SHOPPING
+                                    </button>
                                 </div>
                             </div>
                         </div>
