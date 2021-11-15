@@ -49,7 +49,7 @@
                                 <a class="nav-link" href="${pageContext.request.contextPath}/fc/customerpage">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="${pageContext.request.contextPath}/fc/myorderpage">My
+                                <a class="nav-link active" href="${pageContext.request.contextPath}/fc/myorderpage">My
                                     orders</a>
                             </li>
                         </ul>

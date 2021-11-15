@@ -57,7 +57,7 @@
                                 <a class="nav-link" href="${pageContext.request.contextPath}/fc/viewcustomerpage">Customers</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="${pageContext.request.contextPath}/fc/vieworderpage">Orders</a>
+                                <a class="nav-link active" href="${pageContext.request.contextPath}/fc/vieworderpage">Orders</a>
                             </li>
                         </ul>
                         <!-- Left links -->
