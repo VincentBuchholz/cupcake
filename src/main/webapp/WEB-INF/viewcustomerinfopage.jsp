@@ -53,7 +53,8 @@
                                 <a class="nav-link" href="${pageContext.request.contextPath}/fc/viewcustomerpage">Customers</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="${pageContext.request.contextPath}/fc/vieworderpage">Orders</a>
+                                <a class="nav-link"
+                                   href="${pageContext.request.contextPath}/fc/vieworderpage">Orders</a>
                             </li>
                         </ul>
                         <!-- Left links -->
@@ -66,7 +67,8 @@
 
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link " href="${pageContext.request.contextPath}/fc/logoutcommand">Logout</a>
+                                <a class="nav-link "
+                                   href="${pageContext.request.contextPath}/fc/logoutcommand">Logout</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" style="pointer-events: none;"> ${sessionScope.email}</a>
@@ -88,19 +90,23 @@
                         <input type="hidden" name="customerID" value="${requestScope.customerID}">
                         <div class="form-group">
                             <label for="firstname">First name</label>
-                            <input type="text" class="form-control" id="firstname" value="${requestScope.customerFirstName}"disabled>
+                            <input type="text" class="form-control" id="firstname"
+                                   value="${requestScope.customerFirstName}" disabled>
                         </div>
                         <div class="form-group">
                             <label for="firstname">Last name</label>
-                            <input type="text" class="form-control" id="lastname" value="${requestScope.customerLastName}"disabled>
+                            <input type="text" class="form-control" id="lastname"
+                                   value="${requestScope.customerLastName}" disabled>
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" value="${requestScope.customerEmail}" disabled>
+                            <input type="email" class="form-control" id="email" value="${requestScope.customerEmail}"
+                                   disabled>
                         </div>
                         <div class="form-group">
                             <label for="userBalance">Balance</label>
-                            <input type="number" class="form-control" id="userBalance" name="userBalance" value="${requestScope.customerBalance}">
+                            <input type="number" class="form-control" id="userBalance" name="userBalance"
+                                   value="${requestScope.customerBalance}">
                         </div>
                         <button type="submit" class="btn btn-primary mt-2">Save</button>
                     </form>
@@ -118,25 +124,28 @@
                         <tbody>
 
                         <c:forEach var="orderItem" items="${applicationScope.customerOrderList}">
-                        <tr>
-                            <td>${orderItem.id}</td>
-                            <td>${orderItem.date}</td>
-                            <td class="">
-                            <form action="${pageContext.request.contextPath}/fc/vieworderinfopage" method="POST" class="">
-                                <input type="hidden" value="${orderItem.id}" name="customerOrderID">
-                                <button type="submit" name="editbtn" value="" class="btn btn-outline-primary"><i
-                                        class="bi bi-info-circle"></i></button>
-                            </form>
+                            <tr>
+                                <td>${orderItem.id}</td>
+                                <td>${orderItem.date}</td>
+                                <td class="text-end">
+                                    <form action="${pageContext.request.contextPath}/fc/vieworderinfopage" method="POST"
+                                          class="" style="display: inline-flex;">
+                                        <input type="hidden" value="${orderItem.id}" name="customerOrderID">
+                                        <button type="submit" name="editbtn" value="" class="btn btn-outline-primary"><i
+                                                class="bi bi-info-circle"></i></button>
+                                    </form>
+                                    <form action="${pageContext.request.contextPath}/fc/DeleteOrderCommand"
+                                          method="POST" style="display: inline-flex;">
+                                        <input type="hidden" value="${orderItem.id}" name="customerOrderID">
+                                        <input type="hidden" value="viewcustomerinfopage" name="destination">
+                                        <input type="hidden" value="${requestScope.customerID}" name="customerID">
+                                        <button type="submit" name="removebtn" value="" class="btn btn-outline-danger">
+                                            <i
+                                                    class="bi bi-trash"></i></button>
+                                    </form>
+                                </td>
 
-                        <form action="${pageContext.request.contextPath}/fc/DeleteOrderCommand" method="POST">
-                            <input type="hidden" value="${orderItem.id}" name="customerOrderID">
-                            <input type="hidden" value="viewcustomerinfopage" name="destination">
-                            <input type="hidden" value="${requestScope.customerID}" name="customerID">
-                                <button type="submit" name="removebtn" value="" class="btn btn-outline-danger"><i
-                                        class="bi bi-trash"></i></button>
-                        </form>
-                            </td>
-                        </tr>
+                            </tr>
                         </c:forEach>
                         </tbody>
                     </table>
