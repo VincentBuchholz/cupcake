@@ -70,10 +70,10 @@
                     <!-- Right elements -->
                     <div class="d-flex align-items-center">
                         <!-- Icon -->
-                        <a class="text-reset me-3" href="#">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link " href="${pageContext.request.contextPath}/fc/logoutcommand">Logout</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" style="pointer-events: none;"> ${sessionScope.email}</a>
                             </li>
