@@ -2,7 +2,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<style>
+    <%@include file="/WEB-INF/css/style.css"%>
+</style>
 <%
     Initializer initializer = new Initializer();
 
@@ -32,7 +34,7 @@
 
         <div id="navigation">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light stroke">
                 <!-- Container wrapper -->
                 <div class="container-fluid">
                     <!-- Toggle button -->
