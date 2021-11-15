@@ -140,7 +140,7 @@
                     </div>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal right fade " id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
