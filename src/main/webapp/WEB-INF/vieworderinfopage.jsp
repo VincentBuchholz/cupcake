@@ -85,7 +85,7 @@
     </div>
     <div class="content">
         <div class="jumbotron bg-light mt-5 p-5 shadow-lg p-3 mb-5 bg-white rounded">
-            <h1 class="display-2">${requestScope.orderID}</h1>
+            <h1 class="display-2">Order ID: ${requestScope.orderID}</h1>
             <table class="table table-striped" id="bottoms">
                 <thead>
                 <tr>
