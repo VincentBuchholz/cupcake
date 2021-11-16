@@ -4,19 +4,23 @@ import business.entities.User;
 import business.persistence.Database;
 import business.services.UserFacade;
 import business.exceptions.UserException;
+import business.util.Initializer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public class RegisterCommand extends CommandUnprotectedPage
 {
     private UserFacade userFacade;
+    private Initializer initializer;
 
     public RegisterCommand(String pageToShow)
     {
         super(pageToShow);
         userFacade = new UserFacade(database);
+        initializer = new Initializer();
     }
 
     @Override
@@ -27,6 +31,17 @@ public class RegisterCommand extends CommandUnprotectedPage
         String password2 = request.getParameter("password2");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
+
+        List<User> userList;
+
+        userList = initializer.getCustomerList();
+
+        for (User user : userList) {
+            if (email.equals(user.getEmail())){
+                request.setAttribute("error", "Email already taken");
+                return "registerpage";
+            }
+        }
 
         if (password1.equals(password2))
         {

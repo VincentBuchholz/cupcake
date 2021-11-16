@@ -24,6 +24,11 @@
             <form class="card p-3 bg-light shadow-lg p-3 mb-5 bg-white rounded" name="login"
                   action="${pageContext.request.contextPath}/fc/registercommand" method="POST">
                 <h3 class="mb-5">Create account</h3>
+                <c:if test="${requestScope.error != null }">
+                    <p style="color:red">
+                            ${requestScope.error}
+                    </p>
+                </c:if>
                 <div class="form-outline mb-4">
                     <input type="text" id="firstName" name="firstName" class="form-control form-control-lg"
                            placeholder="First name"/>
@@ -46,11 +51,6 @@
                 </div>
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Sign up</button>
             </form>
-            <c:if test="${requestScope.error != null }">
-                <p style="color:red">
-                        ${requestScope.error}
-                </p>
-            </c:if>
         </div>
 
 
