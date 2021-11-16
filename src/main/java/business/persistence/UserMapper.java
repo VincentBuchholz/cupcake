@@ -17,7 +17,7 @@ public class UserMapper {
 
     public void createUser(User user) throws UserException {
         try (Connection connection = database.connect()) {
-            String sql = "INSERT INTO users (email, password, role,first_name,last_name,balance) VALUES (?, ?, ?,?,?,?)";
+            String sql = "INSERT INTO users (email, password, role,first_name,last_name,balance) VALUES (?, MD5(?), ?,?,?,?)";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, user.getEmail());
@@ -41,12 +41,14 @@ public class UserMapper {
 
     public User login(String email, String password) throws UserException {
         try (Connection connection = database.connect()) {
-            String sql = "SELECT id, role,first_name,last_name,balance FROM users WHERE email=? AND password=?";
+            String sql = "SELECT id, role,first_name,last_name,balance FROM users WHERE email=? AND password=MD5(?)";
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, email);
                 ps.setString(2, password);
+
                 ResultSet rs = ps.executeQuery();
+                System.out.println(ps);
                 if (rs.next()) {
                     String role = rs.getString("role");
                     String firstName = rs.getString("first_name");
