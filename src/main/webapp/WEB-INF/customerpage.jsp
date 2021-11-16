@@ -106,7 +106,7 @@
                             <label for="sel1">Select bottom:</label>
                             <select class="form-control" name="selectBottom" id="sel1">
                                 <c:forEach var="bottomItem" items="${applicationScope.bottomList}">
-                                    <option value="${bottomItem.id}">${bottomItem.name}</option>
+                                    <option value="${bottomItem.id}">${bottomItem.name}  ${bottomItem.price}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -116,7 +116,7 @@
                             <label for="sel1">Select topping:</label>
                             <select class="form-control" name="selectTopping" id="sel2">
                                 <c:forEach var="toppingItem" items="${applicationScope.toppingList}">
-                                    <option value="${toppingItem.id}">${toppingItem.name}</option>
+                                    <option value="${toppingItem.id}">${toppingItem.name}  ${toppingItem.price}</option>
                                 </c:forEach>
                             </select>
                         </div>
